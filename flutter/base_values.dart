@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AppValues {
+class BaseValues {
   void setServerUrl(String serverUrl) async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     sharedPref.setString("server_url", serverUrl);
@@ -17,13 +19,23 @@ class AppValues {
   }
 
   Future<String> getServerUrl() async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_url") ?? "";
+    try {
+      SharedPreferences sharedPref = await SharedPreferences.getInstance();
+      return sharedPref.getString("server_url") ?? "localhost";
+    } catch (error) {
+      print('Error retrieving shared preferences: $error');
+      return "localhost";
+    }
   }
 
   Future<String> getServerPort() async {
-    SharedPreferences sharedPref = await SharedPreferences.getInstance();
-    return sharedPref.getString("server_port") ?? "";
+    try {
+      SharedPreferences sharedPref = await SharedPreferences.getInstance();
+      return sharedPref.getString("server_port") ?? "9999";
+    } catch (error) {
+      print('Error retrieving shared preferences: $error');
+      return "9999";
+    }
   }
 
   Future<String> getDefaultLanguage() async {

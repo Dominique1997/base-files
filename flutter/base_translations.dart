@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:"Projectname"/utilities/base_values.dart';
+import 'package:ncc_app/utilities/base/base_values.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class Translations {
+class BaseTranslations {
   static Future<String> findTranslation(text) async {
-    AppValues appvalue = AppValues();
+    BaseValues appvalue = BaseValues();
     String language = await appvalue.getDefaultLanguage();
     if (language == "English") {
       return text;

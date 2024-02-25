@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-class AppActions {
-  navigateTo(context, [routingPage]) {
+class BaseActions {
+  void navigateTo(context, [routingPage]) {
     if (routingPage != null) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => routingPage));
@@ -13,7 +13,7 @@ class AppActions {
     }
   }
 
-  exceptionChecker(e) {
+  void exceptionChecker(e) {
     if (e is SocketException) {
       debugPrint("Network error: ${e.message}");
     } else if (e is TimeoutException) {
